@@ -6,7 +6,7 @@ from app.database import connect_db, close_db, get_db
 from app.config import settings
 from app.routers import auth, publish, blogs, users, feed, search
 
-
+ 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
@@ -68,3 +68,4 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "ok"}
+
