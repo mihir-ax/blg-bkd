@@ -4,9 +4,9 @@ from contextlib import asynccontextmanager
 
 from app.database import connect_db, close_db, get_db
 from app.config import settings
-from app.routers import auth, publish, blogs, users, feed, search
+from app.routers import auth, publish, blogs, users, feed, search, bot
 
- 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
@@ -53,6 +53,7 @@ app.include_router(blogs.router, prefix="/api/v1", tags=["Blogs"])
 app.include_router(users.router, prefix="/api/v1", tags=["Users"])
 app.include_router(feed.router, prefix="/api/v1", tags=["Feed"])
 app.include_router(search.router, prefix="/api/v1", tags=["Search"])
+app.include_router(bot.router, prefix="/api/v1", tags=["Bot Auth"])
 
 
 @app.get("/")
@@ -68,4 +69,3 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "ok"}
-
